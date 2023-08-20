@@ -1,0 +1,9 @@
+.pointer {
+  cursor: pointer;
+}
+
+
+  .hov:hover{
+    background-color:rgba(75, 176, 243, 0.212)
+
+  };

@@ -1,21 +1,35 @@
-import { MouseEvent } from "react";
+import { Children, MouseEvent, ReactNode } from "react";
 
-function Message() {
-  // console.log("hi");
-  const handleClick = (event: MouseEvent) => {
-    console.log(event);
-  };
+import { useState } from "react";
+
+interface Props {
+  children: string | ReactNode;
+  alert: boolean;
+  onAlert: () => void;
+}
+
+function Message({ children, alert, onAlert }: Props) {
+  // console.log(children);
 
   return (
     <>
       <h1 className="text-primary">Hello World</h1>;
-      <ul className="list-group pointer">
-        {["lorem10", "jsfvksdjv", "Dsdffdsbvf"].map((item) => (
-          <li className="list-group-item" key={item} onClick={handleClick}>
-            {item}
-          </li>
-        ))}
-      </ul>
+      {alert && (
+        <div
+          className="alert alert-danger alert-dismissible fade show container m-2"
+          role="alert"
+        >
+          {children}
+          <button
+            className="btn-close"
+            onClick={onAlert}
+            data-bs-dismiss="alert-dismissible"
+          />
+        </div>
+      )}
+      <button className="btn btn-primary" onClick={onAlert}>
+        {alert ? "close alert" : "show alert"}
+      </button>
     </>
   );
 }
